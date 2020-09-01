@@ -12,8 +12,9 @@ import War from './War';
 export class Person {
 
     // 이름, 국가, 도시, 능력, 군대, 생존 여부로 초기화
-    constructor(name, Nation, City, Abilities, Army, alive){
+    constructor(name, type, Nation, City, Abilities, Army, alive){
         this.name = name;
+        this.type = type; 
         this.nationName = Nation.name;
         this.cityName = City.name;
         this.Abilities = Abilities;
@@ -33,7 +34,7 @@ export class Person {
     }
 
     fireAttack(){
-
+        
     }
 
     // 피공격자가 2턴 동안 공격 불능 상태가 되게 함
@@ -67,6 +68,57 @@ export class Person {
     
 
 }
+
+
+// 빌더 패턴으로 Person 객체 초기화
+class PersonBuilder{
+    
+    constructor(){
+        this.person = new Person();
+    }
+
+    setName(name){
+        this.person.name = name;
+        return this;
+    }
+
+    setType(type){
+        this.person.type = type;
+    }
+
+    setNation(Nation){
+        this.person.nationName = Nation.name;
+        return this;
+    }
+
+    setCity(City){
+        this.person.cityName = City.name;
+        return this;
+    }
+
+    setAbilities(Abilities){
+        this.person.Abilities = Abilities;
+        return this;
+    }
+
+    setArmy(Army){
+        this.person.Army = Army;
+        return this;
+    }
+
+    setAlive(alive){
+        this.person.alive = alive;
+        return this;
+    }
+
+    build(){
+        return this.person;
+    }
+
+}
+
+
+
 
 export class Monarch extends Person{
 
@@ -136,11 +188,6 @@ export class Monarch extends Person{
 
         }
 
-
-        // Comment: 객체의 상태를 생각하고 코드를 짜야 함
-        // Comment: action을 하는 코드는 stateless해야 함
-     
-
     }
 
     giveReward(person){
@@ -161,9 +208,9 @@ export class SubOrdinates extends Person{
 
 export class Commander extends SubOrdinates{  
     
-
+    // 장군인 경우 '돌격'의 데미지가 기본 데미지에 (장군의 힘/50)이 곱해짐
     rush(attackDamage){
-        return 1.5*attackDamage;
+        return (this.Abilities.force/50)*attackDamage;
     }
 
     fireAttack(){

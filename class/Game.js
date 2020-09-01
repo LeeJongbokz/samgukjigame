@@ -1,16 +1,9 @@
-import Nation from './Nation';
-import Abilities from './Abilities';
-import Army from './Army';
-import City from './City';
-import Affairs from './Affairs';
-import Info from './Info';
-import ReadyForWar from './ReadyForWar';
-import Fight from './Fight';
 import Config from './Config';
 
 let gameConfig;
 let instance;
 
+// 싱글톤 패턴
 export default class Game{
 
      constructor(){

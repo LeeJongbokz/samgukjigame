@@ -1,6 +1,8 @@
 
 let instance;
 
+
+// 싱글톤 패턴
 export default class Config{
 
     constructor(){
@@ -8,13 +10,13 @@ export default class Config{
         if(instance){
             return instance;
        }
-
-       instance = this; 
-
-        
+       
        this.inputGold = 100;
        this.maxDays = 30;
        this.warGoldPerPerson = 450;
 
+
+       instance = this; 
+       
     }
 }

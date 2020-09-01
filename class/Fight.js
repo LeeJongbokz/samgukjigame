@@ -55,8 +55,7 @@ export default class Fight{
             // 공격 시행 여부
             let hasAttacked = false; 
 
-            // 공격자가 공격 불능 상태이면 
-            // 턴을 1회 지나가게 함
+            // 공격자가 공격 불능 상태이면, 턴을 1회 지나가게 함
             if(!this.isAttackable(fightPeopleA)){
                 continue;
             }
@@ -73,9 +72,19 @@ export default class Fight{
               // 해당 공격 대상 장수의 군대수가 0보다 크고, 군대의 사기가 0보다 크고, 장수가 싸울 수 있는 상태일 때,
               if(this.isFightable(fightPeopleB[j])){
                     // 공격 데미지. 공격 데미지는 (장수의 힘*군대의 숫자*군대의 훈련도)/100000 
-                    let attackDamage = this.getAttackDamage(fightPeopleA[i]);
-                    fightPeopleB[j].Army.numOfTroops = this.decreaseNumOfTroops(fightPeopleB[j], attackDamage);
-                    hasAttacked = true;
+
+                    let attackType = Math.floor(Math.random()*2)+1;
+
+                    if(attackType == 0){
+                        let attackDamage = this.getAttackDamage(fightPeopleA[i]);
+                        fightPeopleB[j].Army.numOfTroops = this.decreaseNumOfTroops(fightPeopleB[j], attackDamage);
+                        hasAttacked = true;
+                    }else{
+
+                        let type = fightPeopleA[i].type;
+                        let attackDamage = this.getSkilledAttackDamage(fightPeopleA[i], type);
+
+                    }
                   
               }
 
@@ -124,6 +133,6 @@ export default class Fight{
           return person.Army.numOfTroops;
        }
 
-
+    
 
 }

@@ -95,3 +95,43 @@ export default class City{
 
 }
 
+
+
+
+// 빌더 패턴으로 City 객체 초기화
+class CityBuilder{
+    
+    constructor(){
+        this.city = new City();
+    }
+
+    setNation(Nation){
+        this.city.nationName = Nation.name;
+        return this;
+    }
+
+    setName(name){
+        this.city.name = name;
+        return this;
+    }
+
+    setArmy(Army){
+        this.city.Army = Army;
+        return this;
+    }
+
+    setAffairs(Affairs){
+        this.city.Affairs = Affairs;
+        return this;
+    }
+
+    setInfo(Info){
+        this.city.Info = Info;
+        return this;
+    }
+
+    build(){
+        return this.city;
+    }
+
+}
