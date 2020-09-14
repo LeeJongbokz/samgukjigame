@@ -103,6 +103,11 @@ export default class Fight{
 
             return attackDamage;
        }
+
+       
+       getSkilledAttackDamage(){
+           
+       }
   
        isAttackable(person){
            if(person.Army.unable == 0){
@@ -133,6 +138,5 @@ export default class Fight{
           return person.Army.numOfTroops;
        }
 
-    
 
 }
